@@ -4,7 +4,7 @@ App::uses('String', 'Utility');
 
 use Monolog\Logger;
 
-class MonologLogger extends BaseLog {
+class MonologLog extends BaseLog {
 
 	public $defaults = array(
 		'channel' => 'monolog',
@@ -18,9 +18,12 @@ class MonologLogger extends BaseLog {
 		if (!isset($search) || empty($search) || !is_dir($search)) {
 			$search = dirname(dirname(dirname(CakePlugin::path('Monolog')))) . DS . 'vendor' . DS;
 			if (!is_dir($search . 'monolog')) {
-				$search = $search = dirname(dirname(dirname(dirname(__FILE__)))) . DS . 'vendor' . DS;
+				$search = dirname(dirname(dirname(dirname(__FILE__)))) . DS . 'vendor' . DS;
 				if (!is_dir($search . 'monolog')) {
-					throw new Exception("Missing the monolog/monolog composer package.");
+					$search = APP . 'Vendor' . DS;
+					if (!is_dir($search . 'monolog')) {
+						throw new Exception("Missing the monolog/monolog composer package.");
+					}
 				}
 			}
 		}
