@@ -14,7 +14,7 @@ First, add this plugin as a requirement to your `composer.json`:
 
 	{
 		"require": {
-			"cakephp/monolog": "*"
+			"rickydunlop/monolog": "*"
 		}
 	}
 
